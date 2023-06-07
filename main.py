@@ -5,8 +5,6 @@ from bs4 import BeautifulSoup
 url = requests.get('https://webscraper.io/test-sites/e-commerce/allinone/phones')
 soup = BeautifulSoup(url.text, 'html.parser')
 
-# print(soup)
-
 # 1. find()
 # find_header = soup.find('header')
 find_header = soup.header
@@ -15,11 +13,11 @@ find_header_attrs = soup.header.attrs
 
 
 find_div = soup.find('div', {'class':'container test-site'}).text
-# print(find_div)
+
 
 find_h4 = soup.find('h4', {'class':'pull-right price'})
 find_h4_2 = soup.find('h4', class_ = 'pull-right price')
-# print(find_h4)
+
 
 # 2. find_all()
 price = soup.find_all('h4', {'class':'pull-right price'})[6:]
@@ -29,27 +27,44 @@ price = soup.find_all('h4', {'class':'pull-right price'})[6:]
 title = soup.find_all('a', {'class':'title'})
 
 review = soup.find_all('p', {'class':'pull-right'})
-# print(price)
+
 
 find_tag = soup.find_all(['h4','p','a'])
-# print(find_tag)
+
 
 find_id = soup.find_all(id = True) # mencari id
-# print(find_id)
+
 
 find_string = soup.find_all(string='Iphone')
-# print(find_string)
+
 
 # menggunakan re.compile & class_
 find_string_2 = soup.find_all(string = re.compile('Nok'))
-# print(find_string_2)
-find_string_3 = soup.find_all(string = ['Iphone', 'Nokia 123'])
-print(find_string_3)
-find_pull = soup.find_all(class_ = re.compile('pull'))
-# print(find_pull)
-find_pull_2 = soup.find_all('p', class_ = re.compile('pull'))
-# print(find_pull_2)
-find_pull_3 = soup.find_all('p', class_ = re.compile('pull'), limit = 3)
-# print(find_pull_3)
 
+find_string_3 = soup.find_all(string = ['Iphone', 'Nokia 123'])
+
+find_pull = soup.find_all(class_ = re.compile('pull'))
+
+find_pull_2 = soup.find_all('p', class_ = re.compile('pull'))
+
+# find_pull_3 = soup.find_all('p', class_ = re.compile('pull'), limit = 3)
+
+# Extracted data from nested HTML tags
+
+# boxes = soup.find_all('div', class_='row')
+# print(boxes)
+
+section = soup.findAll('div', class_='col-sm-4 col-lg-4 col-md-4')[2]
+if len(section) > 0: # check if the list is not empty
+    section = section[0] # get the first element
+else:
+    section = None # handle the case when there is no 'tbody' element
+    # length = len(section)
+    # print(length)
+# lenght = len(boxes)
+# print(lenght)
+# class_a = boxes.find('a').text
+# print(class_a)
+# class_p = boxes.find('p', class_='description').text
+# print(class_p)
 
