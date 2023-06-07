@@ -54,11 +54,6 @@ find_pull_2 = soup.find_all('p', class_ = re.compile('pull'))
 # boxes = soup.find_all('div', class_='row')
 # print(boxes)
 
-section = soup.findAll('div', class_='col-sm-4 col-lg-4 col-md-4')[2]
-if len(section) > 0: # check if the list is not empty
-    section = section[0] # get the first element
-else:
-    section = None # handle the case when there is no 'tbody' element
     # length = len(section)
     # print(length)
 # lenght = len(boxes)
