@@ -37,8 +37,7 @@ find_id = soup.find_all(id = True) # mencari id
 
 find_string = soup.find_all(string='Iphone')
 
-
-# menggunakan re.compile & class_
+# 3. Menggunakan re.compile & class_
 find_string_2 = soup.find_all(string = re.compile('Nok'))
 
 find_string_3 = soup.find_all(string = ['Iphone', 'Nokia 123'])
@@ -47,19 +46,23 @@ find_pull = soup.find_all(class_ = re.compile('pull'))
 
 find_pull_2 = soup.find_all('p', class_ = re.compile('pull'))
 
-# find_pull_3 = soup.find_all('p', class_ = re.compile('pull'), limit = 3)
+find_pull_3 = soup.find_all('p', class_ = re.compile('pull'), limit = 3)
 
-# Extracted data from nested HTML tags
+# 4. Extracted data from nested HTML tags
 
-# boxes = soup.find_all('div', class_='row')
-# print(boxes)
+boxes = soup.find_all('div', class_='col-sm-4 col-lg-4 col-md-4')[2]
+# print(len(boxes))
+title_1 = boxes.find('a').text
+# print(title_1)
+description = boxes.find('p', class_ = 'description').text
+# print(description)
 
-    # length = len(section)
-    # print(length)
-# lenght = len(boxes)
-# print(lenght)
-# class_a = boxes.find('a').text
-# print(class_a)
-# class_p = boxes.find('p', class_='description').text
-# print(class_p)
+boxes_2 = soup.find_all('ul', class_ = 'nav')[0]
+navbar = boxes_2.find_all('li')[1].text
 
+
+
+boxes_3 = soup.find_all('ul', class_ = 'nav', id = 'side-menu')[0]
+navbar_2 = boxes_2.find_all('li')[1].text
+
+print(navbar_2)
